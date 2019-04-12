@@ -270,6 +270,300 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/win10-关机前提示自定义内容/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/12/win10-关机前提示自定义内容/" itemprop="url">win10 关机前提示自定义内容</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-12T11:36:16+08:00">
+                2019-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统设置/" itemprop="url" rel="index">
+                    <span itemprop="name">系统设置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近上班下班经常忘记打卡，每次忘记打卡就会扣掉当天的饭补，让人很是郁闷。写了提醒标签贴在显示器上，但是依然不起作用，然后就想每天下班肯定要关机，那么在关机的时候，弹个对话框提示一下下班打卡，点击确定之后才真正关机，岂不是完美解决了忘记打卡的问题。</p>
+<p>看似简单的问题，却整整折腾了一个上午才算是勉强解决，主要尝试的方法有两个：</p>
+<ul>
+<li><strong>关机时调用脚本，在脚本中调用对话框。</strong></li>
+<li><strong>使用脚本关机，在脚本中调用对话框，并关机</strong></li>
+</ul>
+<p>第一种方法失败了，原因可能是win10不支持关机前显示对话框，据说在win7中是生效的。下面分别介绍一下上述两种方法。</p>
+<h3 id="关机时调用脚本，在脚本中调用对话框。"><a href="#关机时调用脚本，在脚本中调用对话框。" class="headerlink" title="关机时调用脚本，在脚本中调用对话框。"></a>关机时调用脚本，在脚本中调用对话框。</h3><ol>
+<li><p>win+r 打开“运行”框，输入“gpedit.msc”回车，打开本地组策略编辑器：<br><img src="/images/win10-关机前提示自定义内容/20190412123533685.png" alt><br><img src="/images/win10-关机前提示自定义内容/20190412123635983.png" alt></p>
+</li>
+<li><p>打开“计算机配置–Windows设置–脚本（启动/关机)”，在右侧双击“关机”：<br><img src="/images/win10-关机前提示自定义内容/20190412123826908.png" alt><br>双击后弹出：<br><img src="/images/win10-关机前提示自定义内容/20190412123926273.png" alt><br>单击“显示文件（S）…”：<br><img src="/images/win10-关机前提示自定义内容/20190412124026193.png" alt><br>在上面目录下新建文件“1.cmd”，内容如下：<br><img src="/images/win10-关机前提示自定义内容/20190412124149089.png" alt><br>然后在“关机属性”对话框中点击“添加”：<br><img src="/images/win10-关机前提示自定义内容/20190412124430218.png" alt><br><img src="/images/win10-关机前提示自定义内容/20190412124511422.png" alt><br>点击应用即可。</p>
+</li>
+<li><p>编写对话框脚本，在F:下新建“1.vbs”文件，输入如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msgbox &quot;下班打卡！！！&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>需要注意的是，1.vbs文件编码要选择gbk，可以用notepad++进行转码。</p>
+<p><strong> 经过上述3步，点关机即可调用1.cmd</strong></p>
+<p><strong> 问题描述：</strong><br>在win10系统中，经过测试，进行关机是确实能够调用1.cmd脚本，但是在调用脚本之前就先进入了“正在关机”的界面：<br><img src="/images/win10-关机前提示自定义内容/20190412125114004.png" alt></p>
+<p>如果此时1.cmd中弹出了对话框，是会被这个界面覆盖掉的，也就是说对话框弹出了但是并没显示出来，也无法点击“确定”按钮，关机也关不掉，机器就会永远卡在“正在关机”的界面中了。</p>
+<h3 id="使用脚本关机，在脚本中调用对话框，并关机"><a href="#使用脚本关机，在脚本中调用对话框，并关机" class="headerlink" title="使用脚本关机，在脚本中调用对话框，并关机"></a>使用脚本关机，在脚本中调用对话框，并关机</h3><p>上述步骤在win10中是不适用的，那么只能采取第二种方式，编写关机脚本关机，而不再使用系统的关机按钮。具体的做法如下：</p>
+<ol>
+<li><p>编写关机脚本，在F:下新建1.cmd文件和1.vbs，1.vbs的内容和上步一样，1.cmd的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F:/1.vbs</span><br><span class="line">shutdown -s -t 00</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建1.cmd的快捷方式<br>在1.cmd右键，点“发送到桌面快捷方式”：<br><img src="/images/images/win10-关机前提示自定义内容/20190412125940903.png" alt><br>右键 1.cmd的快捷方式：<br><img src="/images/win10-关机前提示自定义内容/20190412010053737.png" alt><br>红框出做如下修改：<br><img src="/images/win10-关机前提示自定义内容/20190412010128576.png" alt><br>更改图标：<br><img src="/images/win10-关机前提示自定义内容/20190412010246700.png" alt><br>选择关机的图标即可：<br><img src="/images/win10-关机前提示自定义内容/20190412010317683.png" alt><br>效果如下：<br><img src="/images/win10-关机前提示自定义内容/20190412010342296.png" alt></p>
+</li>
+<li><p>将 1.cmd快捷方式拖拽到任务栏中：<br><img src="/images/win10-关机前提示自定义内容/20190412010440815.png" alt></p>
+</li>
+<li><p>将桌面的 1.cmd 快捷方式删除即可。</p>
+</li>
+</ol>
+<p>以后就把任务栏中的1.cmd脚本快捷方式当做关机按钮使用就可以了，效果如下：<br><img src="/images/win10-关机前提示自定义内容/20190412010637410.png" alt><br>点击确定之后，系统关机。</p>
+<p>这样以后就不怕忘记打卡了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/Hexo-Editor-介绍说明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/09/Hexo-Editor-介绍说明/" itemprop="url">Hexo Editor 介绍说明</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-09T11:14:59+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/使用Hexo-Github一步步搭建属于自己的博客（进阶）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -906,7 +1200,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -917,7 +1211,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -928,7 +1222,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
