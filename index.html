@@ -270,6 +270,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/23/vscode开发C-的相关配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/23/vscode开发C-的相关配置/" itemprop="url">vscode开发C++的相关配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-23T19:12:03+08:00">
+                2019-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/VSCode/" itemprop="url" rel="index">
+                    <span itemprop="name">VSCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>近期大概有一年半的时间没写过C++代码了，而且对C++11并没有什么深入了解，因此想要重新学习一下C++ primer，了解一下最新的知识。工欲善其事必先利其器，因此选用IDE能够起到事半功倍的效果，最近流行的VSCode，不用像visual studio那样庞大，使用灵活，且跨平台，因此VSCode与C++的配置过程进行了一下总结。</p>
+<h1 id="VSCODE-与C-设置"><a href="#VSCODE-与C-设置" class="headerlink" title="VSCODE 与C++ 设置"></a>VSCODE 与C++ 设置</h1><h2 id="安装VSCODE"><a href="#安装VSCODE" class="headerlink" title="安装VSCODE"></a>安装VSCODE</h2><p>下载：<a href="https://vscode.en.softonic.com/" target="_blank" rel="noopener">https://vscode.en.softonic.com/</a><br>直接安装即可。</p>
+<h2 id="安装mingw"><a href="#安装mingw" class="headerlink" title="安装mingw"></a>安装mingw</h2><ol>
+<li><p>下载离线安装包：<br><a href="https://jaist.dl.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/sjlj/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0.7z" target="_blank" rel="noopener">https://jaist.dl.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/sjlj/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0.7z</a></p>
+</li>
+<li><p>解压到C盘根目录：<br><img src="/images/vscode开发C-的相关配置/20190423073016747.png" alt></p>
+</li>
+<li><p>将C:\mingw64\bin添加到path环境变量中<br><img src="/images/vscode开发C-的相关配置/20190423073159535.png" alt></p>
+</li>
+</ol>
+<h2 id="安装C-的VSCODE插件"><a href="#安装C-的VSCODE插件" class="headerlink" title="安装C++的VSCODE插件"></a>安装C++的VSCODE插件</h2><p>打开vscode，在左侧栏中点击extentions图标，在搜索栏中填入C++，在插件列表中选择第一个，如下图所示：<br><img src="/images/vscode开发C-的相关配置/20190423073454133.png" alt><br>插件图标如图：<br><img src="/images/vscode开发C-的相关配置/20190423073539569.png" alt></p>
+<h2 id="编写程序进行测试"><a href="#编写程序进行测试" class="headerlink" title="编写程序进行测试"></a>编写程序进行测试</h2><p>在F:\source\VSCode目录下建立foo目录：<br><img src="/images/vscode开发C-的相关配置/20190423073752482.png" alt></p>
+<p>在vscode中，file–&gt;open folder,选中刚才的目录，打开foo<br><img src="/images/vscode开发C-的相关配置/20190423073857252.png" alt></p>
+<p>在FOO中新建a.cpp：<br><img src="/images/vscode开发C-的相关配置/20190423073959958.png" alt><br>vscode会在FOO目录下自动生成.vscode目录。</p>
+<p>编写a.cpp的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cout&lt;&lt;&quot;helloword &quot;&lt;&lt;endl;</span><br><span class="line">    system(&quot;pause&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>点击左侧栏的debug按钮，直接点击绿色三角进行debug，会提示选择编译器，调试器等：<br><img src="/images/vscode开发C-的相关配置/20190423074718296.png" alt><br>最终运行结果如下：<br><img src="/images/vscode开发C-的相关配置/20190423074823411.png" alt></p>
+<h1 id="VSCODE-与VIM设置"><a href="#VSCODE-与VIM设置" class="headerlink" title="VSCODE 与VIM设置"></a>VSCODE 与VIM设置</h1><p>同样，在插件中搜索vim即可：<br><img src="/images/vscode开发C-的相关配置/20190423074923259.png" alt></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/win10-关机前提示自定义内容/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1200,7 +1358,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1211,7 +1369,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1222,7 +1380,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
